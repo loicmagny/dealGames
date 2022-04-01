@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User
+{% endblock %}
+
+{% block body %}
+	<h1>User</h1>
+
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ user.id }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ user.email }}</td>
+			</tr>
+			<tr>
+				<th>Roles</th>
+				{# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
+			</tr>
+			<tr>
+				<th>FirstName</th>
+				<td>{{ user.firstName }}</td>
+			</tr>
+			<tr>
+				<th>LastName</th>
+				<td>{{ user.lastName }}</td>
+			</tr>
+			{# <tr> #}
+		{# <th>CreatedAt</th> #}
+			{# <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td> #}
+			{# </tr> #}
+			{# <tr> #}
+			{# <th>UpdatedAt</th> #}
+			{# <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
+			{# </tr> #}
+		</tbody>
+	</table>
+
+	<h2>Vos annonces publiées</h2>
+	<div class="row">
+		{% for advert in adverts %}
+
+			<div class="col s4">
+				<div class="card sticky-action large">
+					<div class="card-image waves-effect waves-block waves-light">
+						<img src="{{ asset('/uploads/img/adverts/' ~ advert.images[0].name)| imagine_filter('square') }}" alt="{{advert.title |striptags|u.truncate(50, '...')}}"/>
+					</div>
+					<div class="card-content">
+						<span class="card-title activator grey-text text-darken-4">{{advert.title |striptags|u.truncate(50, '...')}}<i class="material-icons right">arrow_drop_up</i>
+						</span>
+						<p>
+							<a href="../advert/{{advert.id}}">Voir l'annonce</a>
+						</p>
+					</div>
+					<div class="card-reveal">
+						<span class="card-title grey-text text-darken-4">{{advert.title |striptags|u.truncate(50, '...')}}<i class="material-icons right">close</i>
+						</span>
+						<p>{{advert.description |striptags|u.truncate(50, '...')}}</p>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<ul>
+				<li colspan="8">no records found</li>
+			</ul>
+		{% endfor %}
+	</div>
+	<div class="row">
+		<form method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Etes vous sûr?');">
+			<a class="waves-effect waves-light btn blue" href="{{ path('app_home') }}">
+				<i class="material-icons left">exit_to_app</i>Retour</a>
+			<a class="waves-effect waves-light btn green" href="{{ path('app_advert_new') }}">
+				<i class="material-icons left">create</i>Créer une nouvelle annonce</a>
+			<a class="waves-effect waves-light btn blue" href="{{ path('app_user_edit', {'id': user.id}) }}">
+				<i class="material-icons left">edit</i>Modifier</a>
+			<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+			<button class="waves-effect waves-light btn red">
+				<i class="material-icons left">delete</i>Supprimer</button>
+		</form>
+	</div>
+{% endblock %}

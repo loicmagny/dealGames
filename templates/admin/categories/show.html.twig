@@ -1,0 +1,33 @@
+{% extends 'admin/header.html.twig' %}
+
+{% block title %}Categories
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1>Categories</h1>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ category.id }}</td>
+				</tr>
+				<tr>
+					<th>Type</th>
+					<td>{{ category.type }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row">
+			<form method="post" action="{{ path('app_categories_delete', {'id': category.id}) }}" onsubmit="return confirm('Etes vous sûr?');">
+				<a class="waves-effect waves-light btn blue" href="{{ path('app_categories_index') }}">
+					<i class="material-icons left">exit_to_app</i>Retour</a>
+				<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+				<button class="waves-effect waves-light btn red">
+					<i class="material-icons left">delete</i>Supprimer</button>
+			</form>
+		</div>
+
+	</div>
+{% endblock %}

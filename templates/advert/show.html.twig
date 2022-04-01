@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Advert
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col s3">
+				<img src="{{ asset('/uploads/img/adverts/' ~ advert.images[0].name) | imagine_filter('square')}}" alt="{{advert.title}}"/>
+			</div>
+			<div class="advert-display">
+				<h3 class="title">{{advert.title}}</h3>
+				<p class="card-content">{{ advert.description |striptags|u.truncate(50, '...')}}
+				</p>
+			</div>
+		</div>
+
+		<ul class="collection">
+			<li class="collection-item">Créé le :
+				{{ advert.createdAt ? advert.createdAt|date('Y-m-d H:i:s') : '' }}</li>
+			<li class="collection-item">Modifié le :
+				{{ advert.UpdatedAt ? advert.UpdatedAt|date('Y-m-d H:i:s') : '' }}</li>
+			<li class="collection-item">Référence:
+				{{ advert.reference }}</li>
+		</ul>
+
+		<ul class="collection">
+			<li class="collection-item avatar">
+				<img src="asset('/uploads/img/users/placeholder.png')" alt="" class="circle">
+				<span class="title">{{ user[0].firstName }}
+					{{ user[0].lastName }}</span>
+				<p>{{ user[0].email }}</p>
+				<button class="btn waves-effect waves-light secondary-content" type="submit" name="action">Contacter
+					<i class="material-icons right">send</i>
+				</button>
+			</li>
+		</ul>
+
+
+		<div class="row col s3">
+			<a class="waves-effect waves-light btn blue" href="{{ path('app_advert_index') }}">
+				<i class="material-icons left">exit_to_app</i>Retour</a>
+		</div>
+		{% if user[0].id == advert.user.id %}
+			<form method="post" class=" row col s3" action="{{ path('app_advert_delete', {'id': advert.id}) }}" onsubmit="return confirm('Etes vous sûr?');">
+
+				<a class="waves-effect waves-light btn blue" href="{{ path('app_advert_edit', {'id': advert.id}) }}">
+					<i class="material-icons left">edit</i>Modifier</a>
+				<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ advert.id) }}">
+				<button class="waves-effect waves-light btn red">
+					<i class="material-icons left">delete</i>Supprimer</button>
+			</form>
+		</div>
+	{% endif %}
+{% endblock %}

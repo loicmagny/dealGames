@@ -1,0 +1,11 @@
+{% extends 'admin/header.html.twig' %}
+
+{% block title %}New Subcategories{% endblock %}
+
+{% block body %}
+    <h1>Create new Subcategories</h1>
+
+    {{ include('admin/subcategories/_form.html.twig') }}
+
+    <a href="{{ path('app_subcategories_index') }}">back to list</a>
+{% endblock %}

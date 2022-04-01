@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				Deal Games
+			{% endblock %}
+		</title>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+			<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+
+	</head>
+
+	<body>
+		<ul id="slide-out" class="sidenav collapsible collapsible-accordion">
+			<div class="user-view">
+				<div class="background">
+					<img class="responsive-img" src="{{ asset('/uploads/img/assets/dealGames.png'| imagine_filter('header')) }}">
+				</div>
+				<img class="circle responsive-img" src="{{ asset('/uploads/img/assets/4824.jpg'| imagine_filter('header')) }}">
+				<div class="right">
+					<a class="waves-effect btn-flat hoverable" href="#">
+						<i class="material-icons">settings</i>
+					</a>
+				</div>
+				<span class="name">{{ app.user.firstName }}
+					{{ app.user.lastName }}</span>
+				<span class="email">{{ app.user.email }}</span>
+				<a href="{{ path('app_logout') }}">Logout</a>
+			</div>
+			<li>
+				<nav>
+					<div class="nav-wrapper">
+						<form>
+							<div class="input-field">
+								<input id="search" type="search" required>
+								<label class="label-icon" for="search">
+									<i class="material-icons">search</i>
+								</label>
+								<i class="material-icons">close</i>
+							</div>
+						</form>
+					</div>
+				</nav>
+			</li>
+			<li>
+				<a href="/admin/user/">Gérer les Utilisateurs</a>
+			</li>
+			<li>
+				<a href="/admin/categories/">Gérer les catégories</a>
+			</li>
+			<li>
+				<a class="truncate" href="/admin/subcategories/">Gérer les sous-catégories</a>
+			</li>
+			<li class="divider"></li>
+			<li>
+				<a href="/admin" class="waves-effect waves-light btn-flat btn-small truncate">
+					<i class="material-icons">home</i>Retour à l'accueil</a>
+			</li>
+			<li>
+				<a href="/" class="waves-effect waves-light btn-flat btn-small truncate">
+					<i class="material-icons">exit_to_app</i>Retour à Deal Games</a>
+			</li>
+		</ul>
+		<div class="fixed-action-btn">
+			<a href="#" data-target="slide-out" class="btn-floating btn-large sidenav-trigger blue pulse">
+				<i class="large material-icons">menu</i>
+			</a>
+		</div>
+		<main>
+			{% block body %}{% endblock %}
+		</main>
+		<footer class="page-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col l6 s12">
+						<h5 class="white-text">
+							Footer Content
+						</h5>
+						<p class="grey-text text-lighten-4">
+							You can use rows and columns here to organize your footer content.
+						</p>
+					</div>
+					<div class="col l4 offset-l2 s12">
+						<h5 class="white-text">
+							Links
+						</h5>
+						<ul>
+							<li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+							<li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+							<li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+							<li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="container">&copy;{{'now'|date('Y')}}
+					Copyright Text<a class="grey-text text-lighten-4 right" href="#!">
+						More Links</a>
+				</div>
+			</div>
+		</footer>
+		{% block javascripts %}
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</body>
+</html></body></html></body></html>

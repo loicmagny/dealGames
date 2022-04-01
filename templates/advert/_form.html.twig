@@ -1,0 +1,17 @@
+{{ form_start(form) }}
+{{ form_widget(form) }}
+
+{# Vérifier si la route est "adevers_edit" pour afficher les images #}
+
+{% if app.request.attributes.get('_route') == 'app_advert_edit' %}
+	<h2>Images</h2>
+	{%for images in advert.images %}
+		<div>
+			<img src="{{asset('/uploads/img/adverts' ~ images.name)}}" alt="Image"/>
+			<a href="{{path('app_advert_delete', {'id': images.id})}}" data-delete data-token="{{csrf_token('delete'  ~ images.id)}}">Supprimer</a>
+		</div>
+	{% endfor %}
+
+{% endif %}
+<button class="btn">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

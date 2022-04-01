@@ -1,0 +1,25 @@
+body {
+    background-image: url('../uploads/img/assets/elden-rings-2k22-pc-jeu-steam-europe-cover.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.advert-display {
+    display: flex;
+    flex-direction: column;
+}
+
+.img-container {
+    height: 100vh;
+    width: 100vh;
+}
+
+body>footer,
+.sidenav {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7536764705882353) 1%, rgba(32, 64, 59, 1) 100%) !important;
+}
+
+#search{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7536764705882353) 1%, rgba(32, 64, 59, 1) 100%) !important;
+}

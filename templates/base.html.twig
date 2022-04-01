@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				Deal Games
+			{% endblock %}
+		</title>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+			<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+			<link rel="stylesheet" href="{{ asset('styles/app.css')}}">
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+
+	</head>
+
+	<body style="background: url({{asset('/uploads/img/assets/elden-ring-pc-jeu-steam-europe-cover.jpg')}} no-repeat center center fixed;">
+		<ul id="slide-out" class="sidenav collapsible collapsible-accordion">
+			{% if app.user %}
+			<div class="background">
+				<img class="responsive-img" src="{{ asset('/uploads/img/assets/dealGames.png'| imagine_filter('header')) }}">
+			</div>
+				<div class="user-view">
+					<img class="circle responsive-img" src="{{asset('/uploads/img/assets/4824.jpg')}}">
+					<div class="right">
+						<a class="waves-effect btn-flat hoverable tooltipped" data-position="left" data-tooltip="Options" href="#">
+							<i class="material-icons white-text">settings</i>
+						</a>
+						<a class="waves-effect btn-flat tooltipped" data-position="bottom" data-tooltip="Déconnexion" href="{{ path('app_logout') }}">
+							<i class="material-icons red-text hoverable">exit_to_app</i>
+						</a>
+					</div>
+					<span class="name white-text">{{ app.user.firstName }}
+						{{ app.user.lastName }}</span>
+					<span class="email white-text">{{ app.user.email }}</span>
+				</div>
+				<li>
+					<a class="white-text" href="{{ path('app_user_show', {'id': app.user.id}) }}">Mon profil</a>
+				</li>
+			{% elseif not app.user %}
+				<li>
+					<a class="waves-effect waves-light btn-flat white-text" href="/login">Se connecter</a>
+					<a class="waves-effect waves-light btn-flat white-text" href="/register">S'enregistrer</a>
+				</li>
+			{% endif %}
+			<li class="divider"></li>
+			<li>
+				<nav>
+					<div class="nav-wrapper white">
+						<form>
+							<div class="input-field">
+								<input id="search" type="search" required>
+								<label class="label-icon" for="search">
+									<i class="material-icons white-text">search</i>
+								</label>
+								<i class="material-icons">close</i>
+							</div>
+						</form>
+					</div>
+				</nav>
+			</li>
+			{# {% if app.user.roles ==  %}
+																																							<li>
+																																								<a href="/admin" class="waves-effect waves-light btn-flat">
+																																									<i class="material-icons">exit_to_app</i>Administration</a>
+																																							</li>
+																																						{% endif %} #}
+			<li>
+				<a href="/" class="waves-effect waves-light btn-flat white-text">
+					<i class="material-icons white-text">home</i>Accueil</a>
+			</li>
+			<li>
+				<div class="collapsible-header white-text">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="30" viewbox="0 0 60 25">
+						<path id="Icon_material-computer" data-name="Icon material-computer" d="M37.5,35.75a4.021,4.021,0,0,0,3.731-4.25l.019-21.25A4.035,4.035,0,0,0,37.5,6H7.5a4.035,4.035,0,0,0-3.75,4.25V31.5A4.035,4.035,0,0,0,7.5,35.75H0V40H45V35.75Zm-30-25.5h30V31.5H7.5Z" transform="translate(0 -6)" fill="#fff"/>
+					</svg>
+					PC</div>
+				<div class="collapsible-body white-text">
+					<ul>
+						<li><a href="#!">First</a></li>
+						<li><a href="#!">Second</a></li>
+						<li><a href="#!">Third</a></li>
+						<li><a href="#!">Fourth</a></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header white-text">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="30" viewbox="0 0 60 25">
+						<path id="Icon_awesome-playstation" data-name="Icon awesome-playstation" d="M44.6,28.28a8.471,8.471,0,0,1-3.031,1.859l-16.023,5.63V31.615L37.335,27.5c1.336-.467,1.547-1.132.453-1.484a8.062,8.062,0,0,0-4.39.222l-7.851,2.715V24.639a28.2,28.2,0,0,1,5.914-1.285,23.763,23.763,0,0,1,10.171,1.186C45.084,25.61,45.475,27.194,44.6,28.28ZM27.069,21.2V10.572c0-1.247-.234-2.394-1.43-2.723-.914-.291-1.484.543-1.484,1.79V36.25l-7.328-2.279V2.25A89.766,89.766,0,0,1,26.921,4.958c6.211,2.088,8.312,4.689,8.312,10.54,0,5.7-3.594,7.863-8.164,5.706ZM3.375,31.179C-.172,30.2-.765,28.157.852,26.987a17.508,17.508,0,0,1,4.039-1.9L15.4,21.426v4.169L7.836,28.241c-1.336.467-1.539,1.132-.453,1.484a8.062,8.062,0,0,0,4.39-.222L15.4,28.211v3.733a24.254,24.254,0,0,1-12.023-.765Z" transform="translate(0.002 -2.25)" fill="#fff"/>
+					</svg>
+
+					Playstation</div>
+				<div class="collapsible-body white-text">
+					<ul>
+						<li><a href="#!">First</a></li>
+						<li><a href="#!">Second</a></li>
+						<li><a href="#!">Third</a></li>
+						<li><a href="#!">Fourth</a></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header white-text">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="30" viewbox="0 0 60 25">
+						<path id="Icon_awesome-xbox" data-name="Icon awesome-xbox" d="M33.4,21.823c4.02,3.722,5.871,6.771,4.936,8.135-.717,1.035-5.145,3.057-8.4,3.831a32.362,32.362,0,0,1-9.11.7,27.614,27.614,0,0,1-9.99-2.673c-2.532-1.247-3.1-1.761-3.1-2.783,0-2.049,2.985-5.641,8.094-9.739,2.9-2.323,6.941-5.051,7.386-4.976.853.144,7.649,5.147,10.19,7.5ZM16.948,9.87c-2.695-1.844-5.272-3.694-7.84-4.345C7.73,5.175,7.63,5.2,6.5,6.08a15.851,15.851,0,0,0-5.471,8.389c-.49,2.344-.553,3-.381,4.146A14.938,14.938,0,0,0,4.327,26.9c.862,1,1.1,1.186.844.679-.381-.754-.027-2.57.862-4.386,1.3-2.673,4.891-7.738,10.915-13.324Zm28.273,4.352c-1.533-5.483-6.125-8.93-6.769-8.93a10.287,10.287,0,0,0-3.266.953,39.141,39.141,0,0,0-5.834,3.619C33.2,13.516,38.625,19.417,40.5,23.728a6.376,6.376,0,0,1,.671,3.584c-.154.583-.154.583.127.315a20.436,20.436,0,0,0,2.3-2.981,16.814,16.814,0,0,0,1.688-4.023,16.884,16.884,0,0,0-.073-6.4ZM12.657,2.961c4.328-.171,9.954,2.365,10.371,2.426.064.007.944-.288,1.96-.665,5.8-2.131,8.529-1.768,9.745-1.727a28.925,28.925,0,0,0-21.223-.8c-2.123.761-2.178.816-.853.768Z" transform="translate(-0.566 -0.559)" fill="#fff"/>
+					</svg>
+
+					Xbox</div>
+				<div class="collapsible-body white-text">
+					<ul>
+						<li><a href="#!">First</a></li>
+						<li><a href="#!">Second</a></li>
+						<li><a href="#!">Third</a></li>
+						<li><a href="#!">Fourth</a></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header white-text">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="30" viewbox="0 0 60 25">
+						<path id="Icon_awesome-nintendo-switch" data-name="Icon awesome-nintendo-switch" d="M9.631,2.363C5.151,2.971,1.546,5.475.411,8.769,0,9.961-.031,10.659.02,19.889c.02,8.47.03,8.668.221,9.328,1.034,3.529,4.349,6.042,9.069,6.869a53.4,53.4,0,0,0,6.437.144c5.212.03,5.755.023,5.9-.083s.151-1.465.151-16.865c0-11.423-.03-16.8-.09-16.9-.09-.129-.251-.137-5.714-.129-4.439.008-5.775.03-6.357.106Zm8.426,16.9V33.52l-3.8-.038a26.936,26.936,0,0,1-4.569-.175c-3-.584-5.222-2.33-5.855-4.607-.2-.713-.2-18.223-.01-18.922A6.833,6.833,0,0,1,8.646,5.422C9.872,5.05,10.444,5,14.431,5l3.605-.008V19.259ZM10.434,9.3a5.918,5.918,0,0,0-1.958.736A2.79,2.79,0,0,0,7.09,12.655a1.8,1.8,0,0,0,.382,1.154,3.863,3.863,0,0,0,2,1.518,3.644,3.644,0,0,0,1.6.281,4.289,4.289,0,0,0,1.486-.129c2.019-.516,3.244-2,2.892-3.522-.392-1.8-2.671-3.013-5.011-2.656ZM26.322,2.3c-.04.023-.06,7.651-.06,16.963,0,15.354.01,16.91.151,16.956.251.068,7.482.046,8.376-.03a12.129,12.129,0,0,0,8.938-4.645,10.33,10.33,0,0,0,.7-1.23c.582-1.321.572-.972.572-11.089,0-8.076-.02-9.282-.151-9.791-.924-3.666-4.63-6.436-9.49-7.066a48.4,48.4,0,0,0-4.9-.106c-2.25-.008-4.108.015-4.138.038Zm9.952,15.339a4.294,4.294,0,0,1,3.133,2.193,2.8,2.8,0,0,1-.01,2.239,4.342,4.342,0,0,1-3.123,2.186c-2.33.455-4.811-.607-5.483-2.353a3.138,3.138,0,0,1,.04-1.989c.693-1.723,3.113-2.74,5.443-2.277Z" transform="translate(-0.001 -2.255)" fill="#fff"/>
+					</svg>
+
+					Nintendo</div>
+				<div class="collapsible-body white-text">
+					<ul>
+						<li><a href="#!">First</a></li>
+						<li><a href="#!">Second</a></li>
+						<li><a href="#!">Third</a></li>
+						<li><a href="#!">Fourth</a></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+		<div class="fixed-action-btn">
+			<a href="#" data-target="slide-out" class="btn-floating btn-large sidenav-trigger blue pulse">
+				<i class="large material-icons">menu</i>
+			</a>
+		</div>
+		<main>
+			{% block body %}{% endblock %}
+		</main>
+		<footer class="page-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col l6 s12">
+						<h5 class="white-text">
+							Footer Content
+						</h5>
+						<p class="grey-text text-lighten-4">
+							You can use rows and columns here to organize your footer content.
+						</p>
+					</div>
+					<div class="col l4 offset-l2 s12">
+						<h5 class="white-text">
+							Links
+						</h5>
+						<ul>
+							<li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+							<li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+							<li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+							<li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="container">&copy;{{'now'|date('Y')}}
+					Copyright Text<a class="grey-text text-lighten-4 right" href="#!">
+						More Links</a>
+				</div>
+			</div>
+		</footer>
+		{% block javascripts %}
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</body>
+</html>

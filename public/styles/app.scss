@@ -1,0 +1,24 @@
+@import "~materialize-css/sass/materialize";
+
+body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    // background-image: url('../../public/uploads/img/assets/elden-ring-pc-jeu-steam-europe-cover.jpg');
+}
+
+
+.collapsible-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media only screen and (max-width : 992px) {
+
+    header,
+    main,
+    footer {
+        padding-left: 0;
+    }
+}

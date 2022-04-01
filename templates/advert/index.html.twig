@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Advert index
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1>Annonces</h1>
+		<div class="row">
+			{% for advert in adverts %}
+				<div class="col s4">
+					<div class="card sticky-action large">
+						<div class="card-image waves-effect waves-block waves-light">
+							<img class="responsive-img" src="{{ asset('/uploads/img/adverts/' ~ advert.images[0].name)| imagine_filter('square') }}" alt="{{advert.title}}"/>
+						</div>
+						<div class="card-content">
+							<span class="card-title activator grey-text text-darken-4">{{advert.title}}<i class="material-icons right">arrow_drop_up</i>
+							</span>
+							<p>
+								<a href="/advert/{{advert.id}}">Voir l'annonce</a>
+							</p>
+						</div>
+						<div class="card-reveal">
+							<span class="card-title grey-text text-darken-4">{{advert.title}}<i class="material-icons right">close</i>
+							</span>
+							<p>{{advert.description |striptags|u.truncate(50, '...')}}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
